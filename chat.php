@@ -49,7 +49,7 @@
                     <img src="assets/img/default-avatar.jpg" id="profile_image">
                     <div class="user_info">
                         <p id="username">Test name</p>
-                        <span id="is_online">Active now</span>
+                        <span id="is_online">Đang hoạt động</span>
                     </div>
                 </div>
                 <div class="user_action_icons tooltip">
@@ -80,8 +80,8 @@
             xml.addEventListener("load", function() {
                 if (xml.readyState == 4 || xml.status == 200) { // everything good
                     let obj = JSON.parse(xml.responseText);
-                    if (typeof(obj.isLoggedIn) != "undefined" && !obj.isLoggedIn) {
-                        location.href = "index.php";
+                    if (typeof(obj.isLoggedIn) != "undefined" && !obj.isLoggedIn) { // chat.php see the info from the api {user has NOT logged in}
+                        location.href = "index.php"; // go to login page
                     } else {
                         switch(obj.type_of_data) {
                             case "user_info":
@@ -111,7 +111,11 @@
 
         const dangxuatBtn = document.getElementById("dangxuatBtn");
         dangxuatBtn.addEventListener("click", function() {
-            get_data({}, "dangxuat");
+            // make a alert asking if the user is sure
+            let answer = confirm("Bạn có chắc chắn bạn muốn đăng xuất không?");
+            if (answer) {
+                get_data({}, "dangxuat");
+            }
         });
 
     </script>

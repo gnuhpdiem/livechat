@@ -39,9 +39,9 @@
 
         if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
 
-            $currentUserData->isLoggedIn = false;
+            $currentUserData->isLoggedIn = false; // user hase NOT logged in
 
-            echo (json_encode($currentUserData));
+            echo (json_encode($currentUserData)); // tell the chat.php that info
 
         } else {
 
