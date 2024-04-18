@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* some main items config */
+img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+}
+
+i {
+
+}
+
+
+/* Now is the styling */
+.container {
+    display: flex;
+}
+
+.container > * {
+    border: 1px solid red;
+}
+
+/* section 1 */
+.sidebar {
+    width: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.sidebar ul li {
+    list-style: none;
+    padding: 20px;
+    margin: 10px;
+    background-color: lightblue;
+}
+
+.sidebar ul li:hover {
+    background-color: rgb(107, 138, 148);
+}
+
+li.tooltip, div.tooltip {
+    outline:none; 
+    position: relative;
+}
+
+.user_action_icons { /* kinda the same as div.tooltip so no need to repeat */
+    padding-right: 2em;
+}
+
+li.tooltip:hover, div.tooltip:hover {
+    text-decoration:none; 
+    cursor: help;
+}
+
+li.tooltip span, div.tooltip span {
+    z-index:10;
+    display:none; 
+    padding:8px 20px;
+    /* width:220px; */
+    line-height:17px;
+    pointer-events: none;
+    white-space: nowrap; /* the words are so long it wont break line */
+}
+
+li.tooltip:hover span {
+    display:block;
+    position:absolute;
+    bottom: 10px;
+    left: 4em;
+    color:#373535;
+    border:2px solid #D3D3D3;
+    background:#ffffff;
+}
+
+div.tooltip:hover span {
+    display:block;
+    position:absolute;
+    bottom: -2em;
+    left: -3em;
+    color:#373535;
+    border:2px solid #D3D3D3;
+    background:#ffffff;
+}
+
+.user_action_icons.tooltip:hover span {
+    display:block;
+    position:absolute;
+    bottom: -1em;
+    color:#373535;
+    border:2px solid #D3D3D3;
+    background:#ffffff;
+}
+
+li.tooltip span, div.tooltip span {
+    border-radius:5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    -moz-box-shadow: 1px 1px 8px #CCC;
+    -webkit-box-shadow: 1px 1px 8px #CCC;
+    box-shadow: 1px 1px 8px #CCC;
+}
+
+.click_box {
+    border: none;
+    position: absolute;
+    left: 72px;
+    bottom: 10px;
+    box-shadow: 5px 10px;
+}
+
+.click_box ul {
+    background-color: aliceblue;
+    padding: 5px 10px 5px 10px;
+    width: 200px;
+}
+
+.click_box ul li {
+    display: block;
+    padding: 5px 10px 5px 10px;
+    border-bottom: 1px solid gray;
+}
+
+/* section 2 */
+.users {
+    width: 220px;
+    height: 100vh;
+}
+
+.users_list a{
+    display: flex;
+}
+
+.header {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* section 3 */
+.chatbox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid gray;
+}
+
+.user_box {
+    display: flex;
+}
