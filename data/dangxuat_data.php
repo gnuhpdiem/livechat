@@ -12,4 +12,3 @@
     $currentUserData->isLoggedIn = false;
     echo json_encode($currentUserData);
 
-?>

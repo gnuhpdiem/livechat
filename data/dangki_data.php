@@ -19,6 +19,8 @@
                         if (empty($data->password)) {
                             echo 'Vui lòng nhập mật khẩu.';
                         } else {
+
+                            $hashedPass = password_hash($data->password, PASSWORD_DEFAULT);
     
                             // bỏ dữ liệu vào array
                             date_default_timezone_set('Asia/Ho_Chi_Minh'); // set thành múi h đúng
@@ -27,7 +29,7 @@
                             $fields[] .= $db->generateID(10);
                             $fields[] .= $data->username;
                             $fields[] .= $data->email;
-                            $fields[] .= hash('sha256', $data->password);
+                            $fields[] .= $hashedPass;
                             $fields[] .= date("Y-m-d H:i:s");
     
                             // var_dump($fields);
@@ -70,4 +72,3 @@
         }
     }
 
-?>

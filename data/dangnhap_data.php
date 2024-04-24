@@ -26,8 +26,10 @@
                 if (is_array($result) && count($result) > 0) { // nếu có trả về kết quả
                     //print_r($result);
                     $result = $result[0]; // take the first result
+
+                    $passHashed = $result['password'];
                     
-                    if (!hash_equals($result['password'], hash('sha256', $data->password))) {
+                    if (!password_verify($data->password, $passHashed)) {
                         echo 'Mật khẩu không chính xác.';
                     } else {
                         $_SESSION['uniqueID'] = $result['uniqueID'];
@@ -43,4 +45,3 @@
         }
     }
 
-?>
