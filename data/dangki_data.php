@@ -27,7 +27,7 @@
                             $fields[] .= $db->generateID(10);
                             $fields[] .= $data->username;
                             $fields[] .= $data->email;
-                            $fields[] .= $data->password;
+                            $fields[] .= hash('sha256', $data->password);
                             $fields[] .= date("Y-m-d H:i:s");
     
                             // var_dump($fields);

@@ -27,7 +27,7 @@
                     //print_r($result);
                     $result = $result[0]; // take the first result
                     
-                    if ($result['password'] != $data->password) {
+                    if ($result['password'] != hash('sha256', $data->password)) {
                         echo 'Mật khẩu không chính xác.';
                     } else {
                         $_SESSION['uniqueID'] = $result['uniqueID'];
