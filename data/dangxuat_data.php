@@ -1,6 +1,6 @@
 <?php 
 
-    $currentUserData = (Object)[];
+    $currentUserData = [];
 
     if (isset($_SESSION['uniqueID']))
         unset($_SESSION['uniqueID']);
@@ -9,6 +9,6 @@
 
     session_destroy();
 
-    $currentUserData->isLoggedIn = false;
+    $currentUserData['isLoggedIn'] = false;
     echo json_encode($currentUserData);
 

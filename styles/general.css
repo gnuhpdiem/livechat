@@ -16,7 +16,6 @@ i {
 
 }
 
-
 /* Now is the styling */
 .container {
     display: flex;
@@ -28,7 +27,7 @@ i {
 
 /* section 1 */
 .sidebar {
-    width: 72px;
+    width: 72px; /* change the width */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -36,16 +35,22 @@ i {
     position: relative;
 }
 
-.sidebar ul li {
-    list-style: none;
-    padding: 20px;
+.sidebar ul a {
     margin: 10px;
+}
+
+.sidebar ul a li {
+    list-style: none;
+    padding: 20px;   
     background-color: lightblue;
 }
 
-.sidebar ul li:hover {
+.sidebar ul a:hover li {
     background-color: rgb(107, 138, 148);
+    cursor: pointer;
 }
+
+/* tool tips */
 
 li.tooltip, div.tooltip {
     outline:none; 
@@ -110,6 +115,7 @@ li.tooltip span, div.tooltip span {
     box-shadow: 1px 1px 8px #CCC;
 }
 
+/* user box */
 .click_box {
     border: none;
     position: absolute;
@@ -132,17 +138,41 @@ li.tooltip span, div.tooltip span {
 
 /* section 2 */
 .users {
-    width: 220px;
+    width: 340px;  /* change the width */
     height: 100vh;
 }
 
-.users_list a{
+.preview_messages a{
     display: flex;
 }
 
 .header {
     padding-left: 10px;
     padding-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.header .input-box {
+    flex: 1;
+    display: flex;
+    background-color: lightgray;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+}
+
+.header input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 4px 12px 4px 2px;
+}
+
+.header i {
+    padding: 5px 5px 5px 10px;
 }
 
 /* section 3 */
@@ -161,4 +191,20 @@ li.tooltip span, div.tooltip span {
 
 .user_box {
     display: flex;
+}
+
+/* contact section all_users */
+.all_users {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.all_users a {
+    padding: 10px;
+    border-bottom: 1px solid #373535;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
 }

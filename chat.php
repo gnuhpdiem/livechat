@@ -11,9 +11,9 @@
         <section class="sidebar">
             <div class="quicklinks">
                 <ul>
-                    <li class="tooltip"><a href="chat.php" class="tooltip"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Chat</span></a></li>
-                    <li class="tooltip"><a href="contacts.php"><i class="fa fa-address-book-o" aria-hidden="true"></i><span>Contacts</span></a></li>
-                    <li class="tooltip"><a href="settings.php" class="tooltip"><i class="fa fa-cog" aria-hidden="true"></i><span>Settings</span></a></li>
+                    <a href="chat.php"><li class="tooltip"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Chat</span></li></a>
+                    <a href="contacts.php"><li class="tooltip"><i class="fa fa-address-book-o" aria-hidden="true"><span>Contacts</span></i></li></a>
+                    <a href="settings.php"><li class="tooltip"><i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i></li></a>
                 </ul>
             </div>
             <div class="main_user_profile">
@@ -29,18 +29,15 @@
             </div>
         </section>
         <section class="users">
+            <h1>Đoạn chat</h1>
             <div class="header">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <input type="text">
+                <div class="input-box">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" placeholder="Tìm kiếm tin nhắn...">
+                </div>
             </div>
-            <div class="users_list">
-                <a href="#">
-                    <img src="assets/img/default-avatar.jpg">
-                    <div class="user_info">
-                        <p>Test name</p>
-                        <span>Hi this is a test message!</span>
-                    </div>
-                </a>
+            <div class="preview_messages" id="preview_messages">
+                
             </div>
         </section>
         <section class="chatbox">
@@ -69,54 +66,13 @@
     </div>
 
     <script src="js/scripts.js"></script>
+    <script src="js/get_data.js"></script>
+    <script src="js/dangxuat.js"></script>
     <script>
-        
-        // function to get an obj and its type
-        function get_data(find_object, type) {
-            
-            let data = {};
-            let xml = new XMLHttpRequest();
-
-            xml.addEventListener("load", function() {
-                if (xml.readyState == 4 || xml.status == 200) { // everything good
-                    let obj = JSON.parse(xml.responseText);
-                    if (typeof(obj.isLoggedIn) != "undefined" && !obj.isLoggedIn) { // chat.php see the info from the api {user has NOT logged in}
-                        location.href = "index.php"; // go to login page
-                    } else {
-                        switch(obj.type_of_data) {
-                            case "user_info":
-                                let username = document.getElementById("username");
-                                if (obj.display_name == null) {
-                                    username.innerHTML = 'user#' + obj.uniqueID;
-                                } else {
-                                    username.innerHTML = obj.display_name;
-                                }
-                                break;
-                        }
-                    }
-                }
-            });
-
-            
-            data.object_info = find_object; // is an obj in an obj
-            data.type_of_data = type;
-            // get data
-            
-            let data_string = JSON.stringify(data); // turns to string
-            xml.open("POST", "api.php", true);
-            xml.send(data_string);
-        }
 
         get_data({}, "user_info"); // get fire when user comes --> tp check if user logged in yet
 
-        const dangxuatBtn = document.getElementById("dangxuatBtn");
-        dangxuatBtn.addEventListener("click", function() {
-            // make a alert asking if the user is sure
-            let answer = confirm("Bạn có chắc chắn bạn muốn đăng xuất không?");
-            if (answer) {
-                get_data({}, "dangxuat");
-            }
-        });
+        get_data({}, "preview_messages");
 
     </script>
 </body>
