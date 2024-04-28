@@ -8,13 +8,13 @@
             // bỏ dữ liệu vào array
 
             $fields = []; // reset the array so no error
-            $fields[] .= $_SESSION['username'];
+            $fields[] .= $_SESSION['uniqueID'];
 
             // var_dump($fields);
             // die;
 
             // run db
-            $query = "SELECT * FROM users WHERE username = ?;";
+            $query = "SELECT * FROM users WHERE uniqueID = ?;";
             $result = $db->selectQuery($query, $fields);
 
             // result will be an array.
@@ -30,7 +30,7 @@
                     // prepare query
                     $queryUpdate = "UPDATE users
                                     SET `password`= ?
-                                    WHERE username = ?";
+                                    WHERE uniqueID = ?";
         
                     
                     // hash the new pass
@@ -39,7 +39,7 @@
                     // bind
                     $fieldsUpdate = []; // reset the array so no error
                     $fieldsUpdate[] .= $hashedPass;
-                    $fieldsUpdate[] .= $_SESSION['username'];
+                    $fieldsUpdate[] .= $_SESSION['uniqueID'];
 
                     // update the pass
                     $resultUpdate = $db->makeQuery($queryUpdate, $fieldsUpdate);
