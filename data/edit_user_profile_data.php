@@ -41,10 +41,6 @@
                 <input type="email" name="email" id="email" autocomplete="off" value='. $result['email'] .'>
             </div>
             <div class="input_field">
-                <label for="password">Mật khẩu: </label>
-                <input type="password" name="password" id="password" autocomplete="off" value='. $result['password'] .'>
-            </div>
-            <div class="input_field">
                 <input type="submit" name="submitBtn" id="submitBtn" value="Cập nhật">
             </div>
         </form>

@@ -91,5 +91,15 @@
         } else {
             include 'data/user_profile_data.php';
         }
-    }
+    } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'changePass')) {
 
+        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+
+            $currentUserData->isLoggedIn = false; // user hase NOT logged in
+
+            echo (json_encode($currentUserData)); // tell the user_profile.php that info
+
+        } else {
+            include 'data/changePass_data.php';
+        }
+    }

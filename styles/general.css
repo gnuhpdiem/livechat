@@ -267,12 +267,14 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .settings {
     width: 48px;
     margin: auto;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .settings i {

@@ -9,6 +9,7 @@
     <div id="content">
 
     </div>
+    <a href="changePass.php"><button>Đổi mật khẩu</button></a>
     <a href="main_user_profile.php"><button>Quay về</button></a>
     <script src="js/get_data.js"></script>
     <script>

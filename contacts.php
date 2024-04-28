@@ -13,7 +13,6 @@
                 <ul>
                     <a href="chat.php"><li class="tooltip"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Chat</span></li></a>
                     <a href="contacts.php"><li class="tooltip"><i class="fa fa-address-book-o" aria-hidden="true"><span>Contacts</span></i></li></a>
-                    <a href="settings.php" class="tooltip"><li class="tooltip"><i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i></li></a>
                 </ul>
             </div>
 
