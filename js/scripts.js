@@ -1,7 +1,9 @@
-const user = document.querySelector(".main_user_profile img");
+const settings = document.getElementById("settings");
 const clickBox = document.querySelector(".click_box");
+const tooltip_span = document.querySelector(".settings span");
 
-user.addEventListener("click", function() {
+settings.addEventListener("click", function() {
     clickBox.style.display = clickBox.style.display === 'none' ? '' : 'none';
+    tooltip_span.style.display = tooltip_span.style.display === 'none' ? '' : 'none';
     //console.log(clickBox);
 });

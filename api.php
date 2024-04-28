@@ -69,7 +69,7 @@
         } else {
             include 'data/preview_messages_data.php';
         }
-    } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'settings')) {
+    } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'edit_user_profile')) {
 
         if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
 
@@ -78,7 +78,18 @@
             echo (json_encode($currentUserData)); // tell the settings.php that info
 
         } else {
-            include 'data/settings_data.php';
+            include 'data/edit_user_profile_data.php';
+        }
+    } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'user_profile')) {
+
+        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+
+            $currentUserData->isLoggedIn = false; // user hase NOT logged in
+
+            echo (json_encode($currentUserData)); // tell the user_profile.php that info
+
+        } else {
+            include 'data/user_profile_data.php';
         }
     }
 

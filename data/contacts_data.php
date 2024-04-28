@@ -18,7 +18,7 @@
         echo json_encode($users);
         
     } else {
-        echo 'No friend yet :((((';
+        echo json_encode('No friend yet :((((');
     }
 
 

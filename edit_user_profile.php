@@ -6,14 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hồ sơ của tôi</h1>
-    <div id="user_content">
-        
+    <div id="content">
+
     </div>
-    <a href="chat.php"><button>Quay về</button></a>
+    <a href="main_user_profile.php"><button>Quay về</button></a>
     <script src="js/get_data.js"></script>
     <script>
-        get_data({}, "user_profile");
+        get_data({}, "edit_user_profile");
     </script>
 </body>
 </html>
