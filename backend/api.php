@@ -6,16 +6,8 @@
 
     $currentUserData = (Object)[];
 
-    // // check if user login/ signup yet
-    // if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
-    //     if ((isset($data->type_of_data)) && ($data->type_of_data != 'dangnhap')) {
-    //         $currentUserData->isLoggedIn = false;
-    //         echo (json_encode($currentUserData));
-    //         die;
-    //     }
-    // }
 
-    require_once 'classes/load.php';
+    require_once __DIR__ . '/classes/load.php';
 
     $db = new Database();  // to use for all the include files
 
@@ -25,15 +17,15 @@
     // đăng kí
     if ((isset($data->type_of_data)) && ($data->type_of_data == 'dangki')) {
 
-        include 'data/dangki_data.php';
+        include __DIR__ . '/data/dangki_data.php';
         // đăng nhập
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'dangnhap')) {
 
-        include 'data/dangnhap_data.php';
+        include __DIR__ . '/data/dangnhap_data.php';
         // đăng xuất
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'dangxuat')) {
 
-        include 'data/dangxuat_data.php';
+        include __DIR__ . '/data/dangxuat_data.php';
 
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'user_info')) {
 
@@ -45,7 +37,7 @@
 
         } else {
 
-            include 'data/user_info_data.php';
+            include __DIR__ . '/data/user_info_data.php';
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'contacts')) {
 
@@ -56,7 +48,7 @@
             echo (json_encode($currentUserData)); // tell the contacts.php that info
 
         } else {
-            include 'data/contacts_data.php';
+            include __DIR__ . '/data/contacts_data.php';
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'preview_messages')) {
 
@@ -67,7 +59,7 @@
             echo (json_encode($currentUserData)); // tell the preview_messages.php that info
 
         } else {
-            include 'data/preview_messages_data.php';
+            include __DIR__ . '/data/preview_messages_data.php';
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'edit_user_profile')) {
 
@@ -78,7 +70,7 @@
             echo (json_encode($currentUserData)); // tell the settings.php that info
 
         } else {
-            include 'data/edit_user_profile_data.php';
+            include __DIR__ . '/data/edit_user_profile_data.php';
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'user_profile')) {
 
@@ -89,7 +81,7 @@
             echo (json_encode($currentUserData)); // tell the user_profile.php that info
 
         } else {
-            include 'data/user_profile_data.php';
+            include __DIR__ . '/data/user_profile_data.php';
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'update_profile')) {
 
@@ -100,7 +92,7 @@
             echo (json_encode($currentUserData)); // tell the user_profile.php that info
 
         } else {
-            include 'data/update_user_profile_data.php';
+            include __DIR__ . '/data/update_user_profile_data.php';
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'changePass')) {
 
@@ -111,6 +103,6 @@
             echo (json_encode($currentUserData)); // tell the user_profile.php that info
 
         } else {
-            include 'data/changePass_data.php';
+            include __DIR__ . '/data/changePass_data.php';
         }
     }

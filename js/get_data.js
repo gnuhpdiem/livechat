@@ -57,7 +57,7 @@ function get_data(find_object, type) {
     // get data
     
     let data_string = JSON.stringify(data); // turns to string
-    xml.open("POST", "api.php", true);
+    xml.open("POST", "backend/api.php", true); // send to api
     xml.send(data_string);
 }
 
