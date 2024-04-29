@@ -30,7 +30,7 @@
             <div class="error" id="error"></div>
             <div class="input_field">
                 <label for="display_name">Tên hiển thị: </label>
-                <input type="text" name="display_name" id="display_name" autocomplete="off" value='. $result['display_name'] .'>
+                <textarea name="display_name" id="display_name" autocomplete="off">'. $result['display_name'] .'</textarea>
             </div>
             <div class="input_field">
                 <label for="username">Tên tài khoản: </label>

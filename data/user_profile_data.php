@@ -27,10 +27,6 @@
                 <td>
                     <table style="width: 100%;">
                         <tr>
-                            <td></td>
-                            <td style="text-align: right;"><a href="edit_user_profile.php"><button>Edit</button></a></td>
-                        </tr>
-                        <tr>
                             <td>Tên hiển thị:</td>
                             <td>'. $result['display_name'] .'</td>
                         </tr>

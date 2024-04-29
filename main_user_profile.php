@@ -10,6 +10,7 @@
     <div id="user_content">
         
     </div>
+    <a href="edit_user_profile.php"><button>Edit</button></a>
     <a href="chat.php"><button>Quay về</button></a>
     <script src="js/get_data.js"></script>
     <script>

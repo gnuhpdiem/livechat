@@ -35,6 +35,7 @@ function get_data(find_object, type) {
                         case "edit_user_profile":
                             let content = document.getElementById("content");
                             content.innerHTML = obj.data;
+                            //alert(JSON.stringify(obj.data));
                             break;
 
                         case "user_profile":
