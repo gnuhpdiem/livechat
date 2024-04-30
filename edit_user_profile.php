@@ -22,7 +22,7 @@
     </script>
     <script>
 
-        var dragAndDropFile = null;
+        var dragAndDropFile = null; // for keeping file that user drag and drop in
         
         function collect_data(e) {
 
@@ -148,14 +148,8 @@
                 reader.readAsDataURL(dragAndDropFile);
                 reader.addEventListener('loadend', function() {
                     e.target.src = reader.result;
-                    //dataURL = e.target.src;
-                    //console.log(dataURL);
                 });
             }
-        }
-
-        function dataURLtoImage(url) {
-
         }
 
     </script>

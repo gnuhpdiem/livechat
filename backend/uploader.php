@@ -52,7 +52,6 @@
 
         if ($type_of_data == 'change_profile_image') {  // if user want to change profile img
             if (!empty($destination)) {
-                // save to database
 
                 $fields = [];
                 $fields[] .= $newFileName;
