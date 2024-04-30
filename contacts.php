@@ -15,7 +15,7 @@
         <section class="main_content">
             <header class="main_header">
                 <div class="username" id="username">Username</div>
-                <button id="dangxuatBtn">Đăng xuất</button>
+                <button onclick="dangxuat()">Đăng xuất</button>
             </header>
             <div>
                 <section class="users">

@@ -26,7 +26,7 @@
             <div class="error" id="error"></div>
             <div>
                 <div>
-                    <img src="'. $image .'" width="150" height="150" id="preview_img">
+                    <img src="'. $image .'" width="150" height="150" id="preview_img" ondragenter="handle_drag_and_drop(event)" ondragleave="handle_drag_and_drop(event)" ondragover="handle_drag_and_drop(event)" ondrop="handle_drag_and_drop(event)">
                 </div>
                 <label for="img" id="change_img_button" style="display: inline-block; cursor: pointer; padding: 5px 10px; border: 1px solid black; border-radius: 5px;">
                     Change Image

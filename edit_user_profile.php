@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .active {
+            border: 2px dashed red;
+        }
+    </style>
 </head>
 <body>
     <div id="content">
@@ -16,12 +21,19 @@
         get_data({}, "edit_user_profile");
     </script>
     <script>
+
+        var dragAndDropFile = null;
         
         function collect_data(e) {
 
             // xử lý hình trước
-            const img = document.getElementById("img");
-            upload_profile_pic(img.files);
+            if (dragAndDropFile == null) {
+                const img = document.getElementById("img");
+                upload_profile_pic(img.files[0]);
+            } else {
+                upload_profile_pic(dragAndDropFile);
+            }
+            
 
             // xử lý mấy cái input còn lại
             const submitBtn = document.getElementById("submitBtn");
@@ -81,7 +93,11 @@
                 img.src = e.target.result;
             }
             const f = e.target.files[0];
-            reader.readAsDataURL(f);
+            // to prevent the user choose an image, but click 'Close'
+            // or user open fileManager, but drag over the file and click Close
+            if (f) {
+                reader.readAsDataURL(f);
+            }
         }
 
         function upload_profile_pic(images) {
@@ -106,11 +122,40 @@
             });
 
             // send data
-            form.append('data', images[0]);
+            form.append('data', images);
             form.append('type_of_data', "change_profile_image");
             
             xml.open("POST", "backend/uploader.php", true);
             xml.send(form);
+        }
+
+        function handle_drag_and_drop(e) {
+
+            if (e.type == 'dragenter') {
+                e.preventDefault();
+                e.target.classList.add("active");
+            } else if (e.type == 'dragleave') {
+                e.preventDefault();
+                e.target.classList.remove("active");
+            } else if (e.type == 'dragover') {
+                e.preventDefault();
+            } else if (e.type == 'drop') {
+                e.preventDefault();
+                e.target.classList.remove("active");
+                dragAndDropFile = e.dataTransfer.files[0];
+                //console.log(file);
+                const reader = new FileReader();
+                reader.readAsDataURL(dragAndDropFile);
+                reader.addEventListener('loadend', function() {
+                    e.target.src = reader.result;
+                    //dataURL = e.target.src;
+                    //console.log(dataURL);
+                });
+            }
+        }
+
+        function dataURLtoImage(url) {
+
         }
 
     </script>
