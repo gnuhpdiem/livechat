@@ -82,6 +82,7 @@
                     
                     let message = xml.responseText;
                     alert(message);
+                    get_data({}, "edit_user_profile");  // reload the page
                     change_img_button.disabled = false;
                     change_img_button.innerHTML = "Change Image";
                 }

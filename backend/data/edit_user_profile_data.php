@@ -15,6 +15,10 @@
     if (is_array($result) && count($result) > 0) { // nếu có trả về kết quả
         
         $result = $result[0];
+        $image = 'assets/img/default-avatar.jpg'; // default img
+        if (file_exists(__DIR__ . '/../../assets/uploads/' .$result['img'])) {
+            $image = 'assets/uploads/' .$result['img'];
+        }
        
         $user['data'] = 
         '
@@ -22,7 +26,7 @@
             <div class="error" id="error"></div>
             <div>
                 <div>
-                    <img src="assets/img/default-avatar.jpg" width="150" height="150" id="preview_img">
+                    <img src="'. $image .'" width="150" height="150" id="preview_img">
                 </div>
                 <label for="img" id="change_img_button" style="display: inline-block; cursor: pointer; padding: 5px 10px; border: 1px solid black; border-radius: 5px;">
                     Change Image
