@@ -15,10 +15,15 @@ function get_data(find_object, type) {
                     switch(obj.type_of_data) { // handle event based on different types
                         case "user_info":
                             let username = document.getElementById("username");
-                            if (obj.display_name == null) {
+                            if (obj.display_name == "") {
                                 username.innerHTML = 'user#' + obj.uniqueID;
                             } else {
                                 username.innerHTML = obj.display_name;
+                            }
+
+                            let main_user_profile_img = document.getElementById("main_user_profile_img");
+                            if (obj.img != "") {
+                                main_user_profile_img.src = 'assets/uploads/' + obj.img;
                             }
                             break;
 

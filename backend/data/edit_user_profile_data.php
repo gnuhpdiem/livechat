@@ -15,8 +15,8 @@
     if (is_array($result) && count($result) > 0) { // nếu có trả về kết quả
         
         $result = $result[0];
-        $image = 'assets/img/default-avatar.jpg'; // default img
-        if (file_exists(__DIR__ . '/../../assets/uploads/' .$result['img'])) {
+        $image = '/livechat/assets/img/default-avatar.jpg'; // default img
+        if ($result['img'] != '') {
             $image = 'assets/uploads/' .$result['img'];
         }
        
@@ -31,7 +31,7 @@
                 <label for="img" id="change_img_button" style="display: inline-block; cursor: pointer; padding: 5px 10px; border: 1px solid black; border-radius: 5px;">
                     Change Image
                 </label>
-                <input type="file" name="img" id="img" style="display: none;" onchange="upload_profile_pic(this.files)" accept=".jpg, .jpeg, .png, .gif">
+                <input type="file" name="img" id="img" style="display: none;" onchange="preview_image(event)" accept=".jpg, .jpeg, .png, .gif">
             </div>
             <div class="input_field">
                 <label for="display_name">Tên hiển thị: </label>

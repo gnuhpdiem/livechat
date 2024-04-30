@@ -16,13 +16,17 @@
     if (is_array($result) && count($result) > 0) { // nếu có trả về kết quả
         
         $result = $result[0];
+        $image = '/livechat/assets/img/default-avatar.jpg'; // default img
+        if ($result['img'] != '') {
+            $image = 'assets/uploads/' .$result['img'];
+        }
 
         $user['data'] = 
         '
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <img src="assets/img/default-avatar.jpg" width="200" height="200">
+                    <img src="'. $image .'" width="200" height="200">
                 </td>
                 <td>
                     <table style="width: 100%;">

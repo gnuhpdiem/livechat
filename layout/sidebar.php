@@ -6,7 +6,7 @@
         </ul>
     </div>
     <div class="settings_section">
-        <a href="main_user_profile.php" class="tooltip"><img src="assets/img/default-avatar.jpg"><span>Tài khoản</span></a>
+        <a href="main_user_profile.php" class="tooltip"><img src="assets/img/default-avatar.jpg" id="main_user_profile_img"><span>Tài khoản</span></a>
         <div class="settings tooltip" id="settings"><i class="fa fa-cog" aria-hidden="true"></i><span>Settings</span></div>
     </div>
     <div class="click_box" style="display: none;">

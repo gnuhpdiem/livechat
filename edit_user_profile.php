@@ -19,6 +19,11 @@
         
         function collect_data(e) {
 
+            // xử lý hình trước
+            const img = document.getElementById("img");
+            upload_profile_pic(img.files);
+
+            // xử lý mấy cái input còn lại
             const submitBtn = document.getElementById("submitBtn");
             const form = document.getElementById("formID");
             const errorText = document.getElementById("error");
@@ -68,6 +73,17 @@
             xml.send(data_string);
         }
 
+        
+        function preview_image(e) {
+            const reader = new FileReader();
+            const img = document.getElementById("preview_img");
+            reader.onload = e => {
+                img.src = e.target.result;
+            }
+            const f = e.target.files[0];
+            reader.readAsDataURL(f);
+        }
+
         function upload_profile_pic(images) {
 
             let change_img_button = document.getElementById("change_img_button");
@@ -82,7 +98,7 @@
                     
                     let message = xml.responseText;
                     alert(message);
-                    get_data({}, "edit_user_profile");  // reload the page
+                    //get_data({}, "edit_user_profile");  // reload the page
                     change_img_button.disabled = false;
                     change_img_button.innerHTML = "Change Image";
                 }
