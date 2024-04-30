@@ -65,7 +65,7 @@
 
         get_data({}, "user_info"); // get fire when user comes --> tp check if user logged in yet
         
-        get_data({}, "preview_messages");
+        //get_data({}, "preview_messages");
 
     </script>
 </body>

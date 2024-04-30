@@ -9,7 +9,7 @@
     <div id="content">
 
     </div>
-    <a href="changePass.php"><button>Đổi mật khẩu</button></a>
+    <a href="change_password.php"><button>Đổi mật khẩu</button></a>
     <a href="main_user_profile.php"><button>Quay về</button></a>
     <script src="js/get_data.js"></script>
     <script>
@@ -64,8 +64,36 @@
             // send data
             data.type_of_data = type;
             let data_string = JSON.stringify(data); // cannot send object so turn the obj to string
-            xml.open("POST", "backend/api.php", true);
+            xml.open("POST", "backend/handle_data.php", true);
             xml.send(data_string);
+        }
+
+        function upload_profile_pic(images) {
+
+            let change_img_button = document.getElementById("change_img_button");
+            change_img_button.disabled = true;
+            change_img_button.innerHTML = "Uploading...";
+
+            let form = new FormData();
+            let xml = new XMLHttpRequest();
+
+            xml.addEventListener("load", function() {
+                if (xml.readyState == 4 || xml.status == 200) { // everything good
+                    
+                    let message = xml.responseText;
+                    alert(message);
+                    change_img_button.disabled = false;
+                    change_img_button.innerHTML = "Change Image";
+                }
+
+            });
+
+            // send data
+            form.append('data', images[0]);
+            form.append('type_of_data', "change_profile_image");
+            
+            xml.open("POST", "backend/uploader.php", true);
+            xml.send(form);
         }
 
     </script>

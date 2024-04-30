@@ -45,7 +45,7 @@
         get_data({}, "user_info");
         get_data({}, "contacts");
 
-        get_data({}, "preview_messages"); // display preview messages
+        //get_data({}, "preview_messages"); // display preview messages
         
     </script>
 </body>

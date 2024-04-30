@@ -43,7 +43,7 @@
 
             //console.log(JSON.stringify(data));
 
-            send_data(data, "changePass");
+            send_data(data, "change_password");
     
         });
 
@@ -70,7 +70,7 @@
             // send data
             data.type_of_data = type;
             let data_string = JSON.stringify(data); // cannot send object so turn the obj to string
-            xml.open("POST", "backend/api.php", true);
+            xml.open("POST", "backend/handle_data.php", true);
             xml.send(data_string);
         }
 

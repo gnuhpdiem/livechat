@@ -3,7 +3,7 @@
     // echoing what the js said
     
     session_start();
-
+    
     $currentUserData = (Object)[];
 
 

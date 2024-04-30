@@ -15,19 +15,20 @@
     if (is_array($result) && count($result) > 0) { // nếu có trả về kết quả
         
         $result = $result[0];
-
-        // check if image exist
-        if ($result['img'] == '') {
-            $image = 'assets/img/default-avatar.jpg';
-        }
+       
         $user['data'] = 
         '
-        <div>
-            <img src='. $image .' style="width: 150px; height: 150px;">
-            <input type="button" name="changeImgBtn" id="changeImgBtn" value="Thay đổi hình ảnh" style="display: block;">
-        </div>
-        <form id="formID" action="" method="post">
+        <form id="formID" action="" method="post" enctype="multipart/form-data">
             <div class="error" id="error"></div>
+            <div>
+                <div>
+                    <img src="assets/img/default-avatar.jpg" width="150" height="150" id="preview_img">
+                </div>
+                <label for="img" id="change_img_button" style="display: inline-block; cursor: pointer; padding: 5px 10px; border: 1px solid black; border-radius: 5px;">
+                    Change Image
+                </label>
+                <input type="file" name="img" id="img" style="display: none;" onchange="upload_profile_pic(this.files)" accept=".jpg, .jpeg, .png, .gif">
+            </div>
             <div class="input_field">
                 <label for="display_name">Tên hiển thị: </label>
                 <textarea name="display_name" id="display_name" autocomplete="off">'. $result['display_name'] .'</textarea>

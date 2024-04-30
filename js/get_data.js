@@ -8,7 +8,7 @@ function get_data(find_object, type) {
     xml.addEventListener("load", function() {
         if (xml.readyState == 4 || xml.status == 200) { // everything good
             if (testJSON(xml.responseText)) {
-                let obj = JSON.parse(xml.responseText);
+                let obj = JSON.parse(xml.responseText); // turns the json back to obj
                 if (typeof(obj.isLoggedIn) != "undefined" && !obj.isLoggedIn) { // chat.php see the info from the api {user has NOT logged in}
                     location.href = "index.php"; // go to login page
                 } else {
@@ -57,7 +57,7 @@ function get_data(find_object, type) {
     // get data
     
     let data_string = JSON.stringify(data); // turns to string
-    xml.open("POST", "backend/api.php", true); // send to api
+    xml.open("POST", "backend/handle_data.php", true); // send to api
     xml.send(data_string);
 }
 
