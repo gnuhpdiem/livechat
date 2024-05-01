@@ -19,6 +19,7 @@
             case 'dangki':
             case 'dangnhap':
             case 'dangxuat':
+            case 'preview_messages':
                 include __DIR__ . '/data/'.$type_of_data.'_data.php';
                 break;
             

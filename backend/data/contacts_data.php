@@ -1,8 +1,12 @@
 <?php
-    $query = 'SELECT * FROM users;';
-    $result = $db->selectQuery($query, []);
-    
 
+    $fields = [];
+    $fields[] .= $_SESSION['uniqueID'];
+    $fields[] .= $_SESSION['username'];
+
+    $query = 'SELECT * FROM users WHERE uniqueID != ? AND username != ?;';
+    $result = $db->selectQuery($query, $fields);
+    
     $users = [];
     $users['data'] = null;
     $name = '';
@@ -17,12 +21,12 @@
                 $name = 'user#' .  $result[$i]['uniqueID'];
             }
 
-            $image = '/livechat/assets/img/default-avatar.jpg'; // default img
+            $image = 'assets/img/default-avatar.jpg'; // default img
             if ($result[$i]['img'] != '') {
                 $image = 'assets/uploads/' .$result[$i]['img'];
             }
 
-            $users['data'] .= '<a href="chat.php?id='. $result[$i]['uniqueID'] .'"><img src="'. $image .'"><span>'. $name .'</span></a>';
+            $users['data'] .= '<div class="clickable_zone" id="user_contact" data-userid="'. $result[$i]['uniqueID'] .'" data-username="'. $result[$i]['username'] .'" onclick="start_chat(event)"><img src="'. $image .'" width="50" height="50"><span>'. $name .'</span></div>';
             $users['type_of_data'] = "contacts";
         }
 

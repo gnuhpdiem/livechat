@@ -193,13 +193,17 @@ li.tooltip span, div.tooltip span, a.tooltip span, .settings_section div.tooltip
     flex-direction: column;
 }
 
-.all_users a {
+.all_users .clickable_zone {
     padding: 10px;
     border-bottom: 1px solid #373535;
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
+}
+
+.all_users div .clickable_zone {
+   display: flex;
 }
 
 .main_content {

@@ -30,7 +30,7 @@
                         
                     </div>
                 </section>
-                <section class="all_users">
+                <section class="all_users" id="all_users">
                     <div id="list_of_users">
 
                     </div>
@@ -42,10 +42,28 @@
     <script src="js/get_data.js"></script>
     <script src="js/dangxuat.js"></script>
     <script>
+        var CURRENT_CHAT_USERID = "";
+        var CURRENT_CHAT_USERNAME = "";
         get_data({}, "user_info");
         get_data({}, "contacts");
 
         //get_data({}, "preview_messages"); // display preview messages
+        
+        function start_chat(e) {
+            
+            var userid = e.target.getAttribute("data-userid");
+            var username = e.target.getAttribute("data-username");
+            if (e.target.id == ''){
+                userid = e.target.parentNode.getAttribute("data-userid");
+                username = e.target.parentNode.getAttribute("data-username");
+            }
+            CURRENT_CHAT_USERID = userid;
+            CURRENT_CHAT_USERNAME = username;
+            //console.log(CURRENT_CHAT_USERID, CURRENT_CHAT_USERNAME);
+            //location.href = "chat.php";
+            get_data({id: CURRENT_CHAT_USERID,
+                        name: CURRENT_CHAT_USERNAME}, "preview_messages");
+        }
         
     </script>
 </body>

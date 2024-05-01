@@ -48,6 +48,7 @@ function get_data(find_object, type) {
                             user_content.innerHTML = obj.data;
                             break;
                         
+                        
                     }
                 }
             } else {

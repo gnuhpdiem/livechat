@@ -1,15 +1,10 @@
 <?php
-    $data = '
-    <a href="#">
-        <img src="assets/img/default-avatar.jpg">
-        <div class="user_info">
-            <p>Test name</p>
-            <span>Hi this is a test message!</span>
-        </div>
-    </a>';
+    
+
+    $dataMssg = $data->object_info->id;
     //$result = $result[0]; // take the first result
     $result = [];
-    $result['data'] = $data;
+    $result['data'] = $dataMssg;
     $result['type_of_data'] = "preview_messages";
     echo json_encode($result);
 
