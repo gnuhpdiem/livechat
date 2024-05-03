@@ -32,10 +32,10 @@ function get_data(find_object, type) {
                             list_of_users.innerHTML = obj.data;
                             break;
 
-                        case "preview_messages":
-                            let preview_messages = document.getElementById("preview_messages");
-                            preview_messages.innerHTML = obj.data;
-                            break;
+                        // case "preview_messages":
+                        //     let preview_messages = document.getElementById("preview_messages");
+                        //     preview_messages.innerHTML = obj.data;
+                        //     break;
                         
                         case "edit_user_profile":
                             let content = document.getElementById("content");
@@ -48,7 +48,19 @@ function get_data(find_object, type) {
                             user_content.innerHTML = obj.data;
                             break;
                         
+                        // case "contacts_chat":
+                        //     let chat_preview_messages = document.getElementById("preview_messages");
+                        //     chat_preview_messages.innerHTML = obj.data;
+                        //     break;
                         
+                        case "friend_info":
+                            let preview_messages = document.getElementById("preview_messages");
+                            preview_messages.innerHTML = obj.info;
+                            let user_box = document.getElementById("user_box");
+                            user_box.innerHTML = obj.info;
+                            let msg_content = document.getElementById("msg_content");
+                            msg_content.innerHTML = obj.messages;
+                            break;
                     }
                 }
             } else {

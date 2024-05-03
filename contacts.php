@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="preview_messages" id="preview_messages">
-                        
+    
                     </div>
                 </section>
                 <section class="all_users" id="all_users">
@@ -53,16 +53,45 @@
             
             var userid = e.target.getAttribute("data-userid");
             var username = e.target.getAttribute("data-username");
-            if (e.target.id == ''){
+            if (e.target.id == "") {
                 userid = e.target.parentNode.getAttribute("data-userid");
                 username = e.target.parentNode.getAttribute("data-username");
             }
+            // console.log(userid, username);
             CURRENT_CHAT_USERID = userid;
             CURRENT_CHAT_USERNAME = username;
-            //console.log(CURRENT_CHAT_USERID, CURRENT_CHAT_USERNAME);
-            //location.href = "chat.php";
-            get_data({id: CURRENT_CHAT_USERID,
-                        name: CURRENT_CHAT_USERNAME}, "preview_messages");
+
+            // collect data
+            const data = {};
+            data.userid = userid;
+            data.username = username;
+
+            //console.log(JSON.stringify(data));
+
+            send_data(data, 'friend_info');
+            // 1. Get friends information that the user want to chat
+            //location.href = 'chat.php';
+            // 2. redirect to the chat.php to start chatting
+        }
+
+        function send_data(data, type) {
+            let xml = new XMLHttpRequest();
+
+            xml.addEventListener("load", function() {
+                if (xml.readyState == 4 || xml.status == 200) { // everything good
+                    
+                    let message = xml.responseText;
+                    alert(message);
+                    //location.href = 'chat.php';
+                }
+
+            });
+
+            // send data
+            data.type_of_data = type;
+            let data_string = JSON.stringify(data); // cannot send object so turn the obj to string
+            xml.open("POST", "chat.php", true);
+            xml.send(data_string);
         }
         
     </script>

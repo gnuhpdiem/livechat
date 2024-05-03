@@ -248,19 +248,48 @@ header {
     display: flex;
 }
 
+.user_box a {
+    display: flex;
+}
+
 .chatbox .chatbox_body {
     display: flex;
     flex-direction: column;
 }
 
 .chatbox .chatbox_body .msg_content {
-    background-color: #CCC;
+    /* background-color: #CCC; */
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll; */
+    /* height: 80%; */
 }
 
 .chatbox .chatbox_body .user_msg {
     background-color: cadetblue;
     padding: 10px;
 }
+
+#message_left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#message_left p, #message_right p{
+    background-color: #D3D3D3;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#message_left img, #message_right img{
+    border: solid thick #ffffff;
+}
+
+#message_right {
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 #list_of_users {
     display: block;

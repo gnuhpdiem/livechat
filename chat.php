@@ -32,22 +32,16 @@
                 </section>
                 <section class="chatbox">
                     <div class="header">
-                        <div class="user_box">
-                            <img src="assets/img/default-avatar.jpg" id="profile_image">
-                            <div class="user_info">
-                                <p>Test name</p>
-                                <span id="is_online">Đang hoạt động</span>
-                            </div>
+                        <div class="user_box" id="user_box">
+                            
                         </div>
                         <div class="user_action_icons tooltip">
                             <i class="fa fa-folder-open-o" aria-hidden="true"></i><span>File</span>
                         </div>
                     </div>
                     <div class="chatbox_body">
-                        <div class="msg_content">
-                            Pretend this is some messages.
-                            <br>
-                            a
+                        <div class="msg_content" id="msg_content">
+                            
                         </div>
                         <div class="user_msg">
                             <input type="text">
@@ -65,9 +59,9 @@
 
         get_data({}, "user_info"); // get fire when user comes --> tp check if user logged in yet
         
-        //get_data({}, "preview_messages");
-
-        
+        <?php if (isset($_GET['id']) && $_GET['id'] != ""):?>
+            get_data({userid: <?php echo $_GET['id'];?>}, "friend_info");
+        <?php endif;?>
 
     </script>
 </body>

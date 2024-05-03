@@ -26,7 +26,7 @@
                 $image = 'assets/uploads/' .$result[$i]['img'];
             }
 
-            $users['data'] .= '<div class="clickable_zone" id="user_contact" data-userid="'. $result[$i]['uniqueID'] .'" data-username="'. $result[$i]['username'] .'" onclick="start_chat(event)"><img src="'. $image .'" width="50" height="50"><span>'. $name .'</span></div>';
+            $users['data'] .= '<a href="chat.php?id='. $result[$i]['uniqueID'] .'" class="clickable_zone" id="user_contact"><img src="'. $image .'" width="50" height="50"><span>'. $name .'</span></a>';
             $users['type_of_data'] = "contacts";
         }
 

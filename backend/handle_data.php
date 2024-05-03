@@ -29,6 +29,7 @@
             case 'edit_user_profile':
             case 'update_profile':
             case 'change_password':
+            case 'friend_info':
                 if (!$isLoggedIn) {
                     $currentUserData->isLoggedIn = false;
                     echo json_encode($currentUserData);
