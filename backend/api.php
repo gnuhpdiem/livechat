@@ -29,7 +29,7 @@
 
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'user_info')) {
 
-        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+        if (!isset($_SESSION['userID']) && !isset($_SESSION['username'])) {
 
             $currentUserData->isLoggedIn = false; // user hase NOT logged in
 
@@ -41,7 +41,7 @@
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'contacts')) {
 
-        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+        if (!isset($_SESSION['userID']) && !isset($_SESSION['username'])) {
 
             $currentUserData->isLoggedIn = false; // user hase NOT logged in
 
@@ -52,7 +52,7 @@
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'preview_messages')) {
 
-        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+        if (!isset($_SESSION['userID']) && !isset($_SESSION['username'])) {
 
             $currentUserData->isLoggedIn = false; // user hase NOT logged in
 
@@ -63,7 +63,7 @@
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'edit_user_profile')) {
 
-        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+        if (!isset($_SESSION['userID']) && !isset($_SESSION['username'])) {
 
             $currentUserData->isLoggedIn = false; // user hase NOT logged in
 
@@ -74,7 +74,7 @@
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'user_profile')) {
 
-        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+        if (!isset($_SESSION['userID']) && !isset($_SESSION['username'])) {
 
             $currentUserData->isLoggedIn = false; // user hase NOT logged in
 
@@ -85,7 +85,7 @@
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'update_profile')) {
 
-        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+        if (!isset($_SESSION['userID']) && !isset($_SESSION['username'])) {
 
             $currentUserData->isLoggedIn = false; // user hase NOT logged in
 
@@ -96,7 +96,7 @@
         }
     } else if ((isset($data->type_of_data)) && ($data->type_of_data == 'changePass')) {
 
-        if (!isset($_SESSION['uniqueID']) && !isset($_SESSION['username'])) {
+        if (!isset($_SESSION['userID']) && !isset($_SESSION['username'])) {
 
             $currentUserData->isLoggedIn = false; // user hase NOT logged in
 

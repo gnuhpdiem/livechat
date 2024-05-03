@@ -1,10 +1,10 @@
 <?php
 
     $fields = [];
-    $fields[] .= $_SESSION['uniqueID'];
+    $fields[] .= $_SESSION['userID'];
     $fields[] .= $_SESSION['username'];
 
-    $query = 'SELECT * FROM users WHERE uniqueID != ? AND username != ?;';
+    $query = 'SELECT * FROM users WHERE userID != ? AND username != ?;';
     $result = $db->selectQuery($query, $fields);
     
     $users = [];
@@ -18,7 +18,7 @@
             if ($result[$i]['display_name'] != '') {
                 $name = $result[$i]['display_name'];
             } else {
-                $name = 'user#' .  $result[$i]['uniqueID'];
+                $name = 'user#' .  $result[$i]['userID'];
             }
 
             $image = 'assets/img/default-avatar.jpg'; // default img
@@ -26,7 +26,7 @@
                 $image = 'assets/uploads/' .$result[$i]['img'];
             }
 
-            $users['data'] .= '<a href="chat.php?id='. $result[$i]['uniqueID'] .'" class="clickable_zone" id="user_contact"><img src="'. $image .'" width="50" height="50"><span>'. $name .'</span></a>';
+            $users['data'] .= '<a href="chat.php?id='. $result[$i]['userID'] .'" class="clickable_zone" id="user_contact"><img src="'. $image .'" width="50" height="50"><span>'. $name .'</span></a>';
             $users['type_of_data'] = "contacts";
         }
 

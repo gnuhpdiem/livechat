@@ -11,7 +11,7 @@
     $data_raw = file_get_contents("php://input");
     $data = json_decode($data_raw); // turns the string to obj again
 
-    $isLoggedIn = isset($_SESSION['uniqueID']) && isset($_SESSION['username']);  // user logged in or not
+    $isLoggedIn = isset($_SESSION['userID']) && isset($_SESSION['username']);  // user logged in or not
 
     if (!$isLoggedIn) {
         $currentUserData->isLoggedIn = false;
@@ -55,12 +55,12 @@
 
                 $fields = [];
                 $fields[] .= $newFileName;
-                $fields[] .= $_SESSION['uniqueID'];
+                $fields[] .= $_SESSION['userID'];
                 $fields[] .= $_SESSION['username'];
 
                 $query = "UPDATE users
                             SET img = ?
-                            WHERE uniqueID = ? AND username = ? LIMIT 1;";
+                            WHERE userID = ? AND username = ? LIMIT 1;";
 
                 $result = $db->makeQuery($query, $fields);
                 if ($result) {

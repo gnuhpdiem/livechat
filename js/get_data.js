@@ -15,8 +15,8 @@ function get_data(find_object, type) {
                     switch(obj.type_of_data) { // handle event based on different types
                         case "user_info":
                             let username = document.getElementById("username");
-                            if (obj.display_name == "") {
-                                username.innerHTML = 'user#' + obj.uniqueID;
+                            if (!obj.display_name) {
+                                username.innerHTML = 'user#' + obj.userID;
                             } else {
                                 username.innerHTML = obj.display_name;
                             }
@@ -56,10 +56,17 @@ function get_data(find_object, type) {
                         case "friend_info":
                             let preview_messages = document.getElementById("preview_messages");
                             preview_messages.innerHTML = obj.info;
+                
+                            let msg_holder = document.getElementById("msg_holder");
+                            msg_holder.innerHTML = obj.messages;
+
                             let user_box = document.getElementById("user_box");
                             user_box.innerHTML = obj.info;
-                            let msg_content = document.getElementById("msg_content");
-                            msg_content.innerHTML = obj.messages;
+                            break;
+
+                        case "send_message":
+                            let msg_holder1 = document.getElementById("msg_holder");
+                            msg_holder1.innerHTML = obj.messages;
                             break;
                     }
                 }

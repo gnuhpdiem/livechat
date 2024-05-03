@@ -24,13 +24,13 @@
                                             display_name = ?,
                                             username = ?,
                                             email = ?
-                                        WHERE uniqueID = ?";
+                                        WHERE userID = ?";
                             // bind
                             $fieldsUpdate = []; // reset the array so no error
                             $fieldsUpdate[] .= $data->display_name;
                             $fieldsUpdate[] .= $data->username;
                             $fieldsUpdate[] .= $data->email;
-                            $fieldsUpdate[] .= $_SESSION['uniqueID'];
+                            $fieldsUpdate[] .= $_SESSION['userID'];
                             // update
                             $resultUpdate = $db->makeQuery($queryUpdate, $fieldsUpdate);
                             if ($resultUpdate) {

@@ -30,7 +30,7 @@
                         
                     </div>
                 </section>
-                <section class="chatbox">
+                <section class="chatbox" id="chatbox">
                     <div class="header">
                         <div class="user_box" id="user_box">
                             
@@ -39,14 +39,14 @@
                             <i class="fa fa-folder-open-o" aria-hidden="true"></i><span>File</span>
                         </div>
                     </div>
-                    <div class="chatbox_body">
-                        <div class="msg_content" id="msg_content">
-                            
-                        </div>
-                        <div class="user_msg">
-                            <input type="text">
-                            <button><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                        </div>
+                    <div class="msg_holder" id="msg_holder" style="overflow-y: scroll; height: 600px;">   
+                        
+                    </div>
+                    <div class="user_msg">
+                        <label for="file_message"><i class="fa fa-file" aria-hidden="true"></i></label>
+                        <input type="file" name="file" id="file_message" style="display: none;">
+                        <input type="text" id="text_message">
+                        <input type="submit" onclick="send_message(event)">
                     </div>
                 </section>
             </div>
@@ -56,12 +56,31 @@
     <script src="js/get_data.js"></script>
     <script src="js/dangxuat.js"></script>
     <script>
-
+        var CURRENT_CHAT_USERID = "";
         get_data({}, "user_info"); // get fire when user comes --> tp check if user logged in yet
         
         <?php if (isset($_GET['id']) && $_GET['id'] != ""):?>
-            get_data({userid: <?php echo $_GET['id'];?>}, "friend_info");
+            CURRENT_CHAT_USERID = <?php echo $_GET['id'];?>;
+            get_data({userid: CURRENT_CHAT_USERID}, "friend_info");
         <?php endif;?>
+
+        // functions for chatting
+        function send_message(e) {
+            // collect data
+            const text_message = document.getElementById("text_message");
+
+            if (!text_message.value.trim()) {
+                alert("Empty messages!");
+                return;
+            }
+            //alert(text_message.value);
+    
+            // send and get data
+            get_data({
+                message: text_message.value.trim(),
+                userid: CURRENT_CHAT_USERID
+            }, "send_message");
+        }
 
     </script>
 </body>

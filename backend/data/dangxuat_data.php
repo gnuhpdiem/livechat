@@ -2,8 +2,8 @@
 
     $currentUserData = [];
 
-    if (isset($_SESSION['uniqueID']))
-        unset($_SESSION['uniqueID']);
+    if (isset($_SESSION['userID']))
+        unset($_SESSION['userID']);
     if (isset($_SESSION['username']))
         unset($_SESSION['username']);
 

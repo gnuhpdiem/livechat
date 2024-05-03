@@ -1,11 +1,11 @@
 <?php
 
     $fields = [];
-    $fields[] .= $_SESSION['uniqueID'];
+    $fields[] .= $_SESSION['userID'];
     $fields[] .= $_SESSION['username'];
 
     // run db
-    $query = "SELECT * FROM users WHERE uniqueID = ? AND username = ? LIMIT 1;";
+    $query = "SELECT * FROM users WHERE userID = ? AND username = ? LIMIT 1;";
     $result = $db->selectQuery($query, $fields);
 
     $user = [];

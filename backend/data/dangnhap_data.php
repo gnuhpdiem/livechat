@@ -32,7 +32,7 @@
                     if (!password_verify($data->password, $passHashed)) {
                         echo 'Mật khẩu không chính xác.';
                     } else {
-                        $_SESSION['uniqueID'] = $result['uniqueID'];
+                        $_SESSION['userID'] = $result['userID'];
                         $_SESSION['username'] = $result['username'];
                         echo 'yes';
                     }

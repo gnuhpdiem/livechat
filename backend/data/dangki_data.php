@@ -24,7 +24,10 @@
     
                             // bỏ dữ liệu vào array
                             date_default_timezone_set('Asia/Ho_Chi_Minh'); // set thành múi h đúng
-    
+                            
+                            //$userID = $db->generateID(10);
+
+                            
                             $fields = []; // reset the array so no error
                             $fields[] .= $db->generateID(10);
                             $fields[] .= $data->username;
@@ -36,12 +39,12 @@
                             // die;
     
                             // run db
-                            $query = "INSERT INTO users (uniqueID, username, email, `password`, created_at)
+                            $query = "INSERT INTO users (userID, username, email, `password`, created_at)
                                     VALUES (?, ?, ?, ?, ?);";
                             $result = $db->makeQuery($query, $fields);
     
                             if ($result) {
-                                $_SESSION['uniqueID'] = $fields[0];
+                                $_SESSION['userID'] = $fields[0];
                                 $_SESSION['username'] = $fields[1];
                                 echo 'yes';
                             } else {
@@ -63,6 +66,24 @@
 
         $querySelect = "SELECT * FROM users WHERE username = ?;";
         $resultSelect = $db->selectQuery($querySelect, $nameArray);
+
+        // result will be an array.
+        if (is_array($resultSelect) && count($resultSelect) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function is_exist_userID($userID) {
+
+        $db = new Database();
+        
+        $userID_array = [];
+        $userID_array[] .= $userID;
+
+        $querySelect = "SELECT * FROM users WHERE userID = ?;";
+        $resultSelect = $db->selectQuery($querySelect, $userID_array);
 
         // result will be an array.
         if (is_array($resultSelect) && count($resultSelect) > 0) {

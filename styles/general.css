@@ -233,19 +233,29 @@ header {
 
 .chatbox {
     flex: 1;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; */
+    /* display: grid;
+    grid-template-rows: 50px 1fr; */
+    display: grid;
+    grid-template-rows: 50px 1fr;
 }
 
-.header {
+.chatbox div{
+    display: block;
+}
+
+.chatbox .header {
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid gray;
 }
 
-.user_box {
+.chatbox .header .user_box {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .user_box a {
@@ -253,8 +263,8 @@ header {
 }
 
 .chatbox .chatbox_body {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 .chatbox .chatbox_body .msg_content {
@@ -312,4 +322,8 @@ header {
 
 .settings i {
     font-size: 40px;
+}
+
+.user_msg {
+    /* margin-top: 600px; */
 }

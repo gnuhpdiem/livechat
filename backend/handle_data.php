@@ -13,7 +13,7 @@
 
     if (isset($data->type_of_data)) {
         $type_of_data = $data->type_of_data;
-        $isLoggedIn = isset($_SESSION['uniqueID']) && isset($_SESSION['username']);
+        $isLoggedIn = isset($_SESSION['userID']) && isset($_SESSION['username']);
 
         switch ($type_of_data) {
             case 'dangki':
@@ -30,6 +30,7 @@
             case 'update_profile':
             case 'change_password':
             case 'friend_info':
+            case 'send_message':
                 if (!$isLoggedIn) {
                     $currentUserData->isLoggedIn = false;
                     echo json_encode($currentUserData);
@@ -42,3 +43,14 @@
                 break;
         }
     }
+
+    function left_message($message) {
+        return '<div id="message_right"><p>' . $message . '</p><span>21:53</span></div>';
+    }
+
+    function right_message($message) {
+        
+        return '<div id="message_right"><span>21:53</span><p>' . $message . '</p></div>';
+    }
+
+    
