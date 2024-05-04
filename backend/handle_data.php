@@ -19,7 +19,6 @@
             case 'dangki':
             case 'dangnhap':
             case 'dangxuat':
-            case 'preview_messages':
                 include __DIR__ . '/data/'.$type_of_data.'_data.php';
                 break;
             
@@ -31,6 +30,7 @@
             case 'change_password':
             case 'friend_info':
             case 'send_message':
+            case 'preview_messages':
                 if (!$isLoggedIn) {
                     $currentUserData->isLoggedIn = false;
                     echo json_encode($currentUserData);
@@ -44,13 +44,13 @@
         }
     }
 
-    function left_message($message) {
-        return '<div id="message_right"><p>' . $message . '</p><span>21:53</span></div>';
+    function left_message($message, $image, $date_send) {
+        return '<div id="message_left"><img src="'. $image .'"><p>' . $message . '</p><span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span></div>';
     }
 
-    function right_message($message) {
+    function right_message($message, $date_send) {
         
-        return '<div id="message_right"><span>21:53</span><p>' . $message . '</p></div>';
+        return '<div id="message_right"><span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span><p>' . $message . '</p></div>';
     }
 
     

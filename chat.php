@@ -26,7 +26,7 @@
                             <input type="text" placeholder="Tìm kiếm tin nhắn...">
                         </div>
                     </div>
-                    <div class="preview_messages" id="preview_messages">
+                    <div class="preview_messages" id="preview_messages" style="display: block;">
                         
                     </div>
                 </section>
@@ -45,7 +45,7 @@
                     <div class="user_msg">
                         <label for="file_message"><i class="fa fa-file" aria-hidden="true"></i></label>
                         <input type="file" name="file" id="file_message" style="display: none;">
-                        <input type="text" id="text_message">
+                        <input type="text" id="text_message" onkeyup="enter_pressed(event)">
                         <input type="submit" onclick="send_message(event)">
                     </div>
                 </section>
@@ -62,6 +62,8 @@
         <?php if (isset($_GET['id']) && $_GET['id'] != ""):?>
             CURRENT_CHAT_USERID = <?php echo $_GET['id'];?>;
             get_data({userid: CURRENT_CHAT_USERID}, "friend_info");
+        <?php else: ?>
+            get_data({}, "preview_messages");
         <?php endif;?>
 
         // functions for chatting
@@ -80,7 +82,23 @@
                 message: text_message.value.trim(),
                 userid: CURRENT_CHAT_USERID
             }, "send_message");
+            
+            text_message.value = '';
         }
+
+        function enter_pressed(e) {
+            if (e.keyCode == 13) {  // pressed enter key
+                send_message(e);
+            }
+        }
+
+        setInterval(function() {
+            // alert("heyy");
+            if (CURRENT_CHAT_USERID) {
+                get_data({userid: CURRENT_CHAT_USERID}, "friend_info");
+            }
+            
+        }, 1000);
 
     </script>
 </body>

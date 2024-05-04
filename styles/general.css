@@ -150,6 +150,9 @@ li.tooltip span, div.tooltip span, a.tooltip span, .settings_section div.tooltip
     background-color: pink;
 }
 
+.preview_messages {
+    display: block;
+}
 .preview_messages a{
     display: flex;
 }

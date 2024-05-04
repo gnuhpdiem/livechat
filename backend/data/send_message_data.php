@@ -37,6 +37,8 @@
             $fields_message[] .= generateRandomString(50);
         }
 
+        date_default_timezone_set('Asia/Ho_Chi_Minh'); // set thành múi h đúng
+
         // db run # 3
         $fields_message[] .= $_SESSION['userID'];  // who send
         $fields_message[] .= $data->object_info->userid;  // who recieve
@@ -56,14 +58,34 @@
             $fields = [];
             $fields[] .= $fields_message[0];
 
-            $sql = "SELECT * FROM messages WHERE conversationID = ?";
+            $sql = "SELECT * FROM messages WHERE conversationID = ? ORDER BY id desc;";
             $result = $db->selectQuery($sql, $fields);
 
             if (is_array($result) && count($result) > 0) {
                 
+                $result = array_reverse($result);
                 for ($i=0; $i < count($result); $i++) {
 
-                    $message_data['messages'] .= right_message($result[$i]['message']);              
+                    $user_info = $db->getUser($result[$i]['senderID']);
+                    $user_info = $user_info[0];
+
+                    if ($user_info['display_name'] != '') {
+                        $name = $user_info['display_name'];
+                    } else {
+                        $name = 'user#' .  $user_info['userID'];
+                    }
+            
+                    $image = 'assets/img/default-avatar.jpg'; // default img
+                    if ($user_info['img'] != '') {
+                        $image = 'assets/uploads/' .$user_info['img'];
+                    }
+
+                    if ($result[$i]['senderID'] == $_SESSION['userID']) {  // sender is me
+                        $message_data['messages'] .= right_message($result[$i]['message'], $result[$i]['created_at']);
+                    } else {
+                        $message_data['messages'] .= left_message($result[$i]['message'], $image, $result[$i]['created_at']);
+                    }
+                                  
                     
                     $message_data['type_of_data'] = 'send_message';
                 }

@@ -32,10 +32,10 @@ function get_data(find_object, type) {
                             list_of_users.innerHTML = obj.data;
                             break;
 
-                        // case "preview_messages":
-                        //     let preview_messages = document.getElementById("preview_messages");
-                        //     preview_messages.innerHTML = obj.data;
-                        //     break;
+                        case "preview_messages":
+                            let preview_messages1 = document.getElementById("preview_messages");
+                            preview_messages1.innerHTML = obj.data;
+                            break;
                         
                         case "edit_user_profile":
                             let content = document.getElementById("content");
@@ -60,13 +60,13 @@ function get_data(find_object, type) {
                             let msg_holder = document.getElementById("msg_holder");
                             msg_holder.innerHTML = obj.messages;
 
-                            let user_box = document.getElementById("user_box");
-                            user_box.innerHTML = obj.info;
-                            break;
 
                         case "send_message":
                             let msg_holder1 = document.getElementById("msg_holder");
                             msg_holder1.innerHTML = obj.messages;
+                            msg_holder1.scrollTo(0, msg_holder1.scrollHeight);
+                            const text_message = document.getElementById("text_message");
+                            text_message.focus();
                             break;
                     }
                 }
