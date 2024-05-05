@@ -59,7 +59,7 @@ li.tooltip, div.tooltip, a.tooltip, .settings_section div.tooltip {
     position: relative;
 }
 
-.user_action_icons { /* kinda the same as div.tooltip so no need to repeat */
+.user_action_icons { /* kinda the same with div.tooltip so no need to repeat */
     padding-right: 2em;
 }
 
@@ -87,6 +87,7 @@ li.tooltip:hover span, a.tooltip:hover span, .settings_section div.tooltip:hover
     border:2px solid #D3D3D3;
     background:#ffffff;
 }
+
 
 a.tooltip:hover span, .settings_section div.tooltip:hover span {
     left: 3.7em;

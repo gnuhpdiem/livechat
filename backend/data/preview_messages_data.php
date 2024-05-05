@@ -1,14 +1,26 @@
 <?php
     $messages = [];
     $messages['data'] = null;
-
     
     $fields_user = [];
     // retrieve messages made with said user
     $fields_user[] .= $_SESSION['userID'];
     $fields_user[] .= $_SESSION['userID'];
 
-    $query_find_conversation = "SELECT * FROM messages WHERE senderID = ? OR receiverID = ? GROUP BY conversationID ORDER BY id desc;";
+    $fields_user[] .= $_SESSION['userID'];
+    $fields_user[] .= $_SESSION['userID'];
+
+    $fields_user[] .= $_SESSION['userID'];
+    $fields_user[] .= $_SESSION['userID'];
+
+    // biggggggg
+    // explain:
+    // show all the conversations that the user(me) has taken part in, from newest to oldest
+    // and show the latest messages from each conversation, 
+    // excluding the deleted messages
+    // if user have new message or user send a new message, it will appear at the top
+    $query_find_conversation = "SELECT * FROM messages WHERE (senderID = ? OR receiverID = ?) AND id IN (SELECT MAX(id) FROM messages WHERE (senderID = ? OR receiverID = ?) AND id NOT IN (SELECT id FROM messages WHERE (senderID = ? OR receiverID = ?) AND ((is_deleted_sender = '1' OR is_deleted_receiver = '1')) GROUP BY conversationID) GROUP BY conversationID) ORDER BY id DESC;";
+
     $result_find_conversation = $db->selectQuery($query_find_conversation, $fields_user);
 
     if (is_array($result_find_conversation) && count($result_find_conversation) > 0) {
@@ -33,16 +45,20 @@
                     $image = 'assets/uploads/' .$user_info['img'];
                 }
 
-                // show the last messages and the sender name
-                $message = $name . ': ' . $result_find_conversation[$i]['message'];
+                $message = $name .': '. $result_find_conversation[$i]['message'];
+                    
+                // we do a little comparing
                 if ($result_find_conversation[$i]['senderID'] == $_SESSION['userID']) {
                     $message = 'Bạn: ' . $result_find_conversation[$i]['message'];
                 }
 
-                $messages['data'] .= '<a href="chat.php?id='. $user_info['userID'] .'" class="clickable_zone" id="user_contact"><img src="'. $image .'" width="50" height="50"><div><span>'. $name .'</span><p>'. $message .'</p></div></a>';
+                $messages['data'] .= '<a href="chat.php?id='. $user_info['userID'] .'" id="user_contact"><img src="'. $image .'" width="50" height="50"><div><span>'. $name .'</span><p>'. $message .'</p></div></a>';
 
-                $messages['type_of_data'] = "preview_messages";
+                $messages['type_of_data'] = 'preview_messages';
             }
-
             echo json_encode($messages);
+    } else {
+        $messages['data'] = '';
+        $messages['type_of_data'] = 'preview_messages';
+        echo json_encode($messages);
     }

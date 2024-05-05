@@ -31,6 +31,8 @@
             case 'friend_info':
             case 'send_message':
             case 'preview_messages':
+            case 'delete_message':
+            case 'delete_conversation':
                 if (!$isLoggedIn) {
                     $currentUserData->isLoggedIn = false;
                     echo json_encode($currentUserData);
@@ -44,13 +46,25 @@
         }
     }
 
-    function left_message($message, $image, $date_send) {
-        return '<div id="message_left"><img src="'. $image .'"><p>' . $message . '</p><span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span></div>';
+    function left_message($id, $message, $image, $date_send) {
+        return '<div id="message_left"><img src="'. $image .'"><p>' . $message . '</p><span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span><span onclick="delete_message(event)" msg_id='. $id .'>Trash</span></div>';
     }
 
-    function right_message($message, $date_send) {
+    function right_message($id, $message, $date_send, $received, $seen) {
+
+        $status = '';
+        if ($seen) {
+            $status = 'seen';
+        } elseif ($received) {
+            $status = 'received';
+        }
         
-        return '<div id="message_right"><span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span><p>' . $message . '</p></div>';
+        return
+        '<div id="message_right">
+            <span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span>
+            <p>' . $message . '</p>
+            <div><span>'. $status . '</span><span onclick="delete_message(event)" msg_id='. $id .'>Trash</span></div>
+        </div>';
     }
 
     

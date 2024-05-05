@@ -18,18 +18,7 @@
                 <button onclick="dangxuat()">Đăng xuất</button>
             </header>
             <div>
-                <section class="users">
-                <h1>Đoạn chat</h1>
-                    <div class="header">
-                        <div class="input-box">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                            <input type="text" placeholder="Tìm kiếm tin nhắn...">
-                        </div>
-                    </div>
-                    <div class="preview_messages" id="preview_messages">
-    
-                    </div>
-                </section>
+                
                 <section class="all_users" id="all_users">
                     <div id="list_of_users">
 

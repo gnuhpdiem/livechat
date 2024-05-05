@@ -31,10 +31,15 @@ function get_data(find_object, type) {
                             let list_of_users = document.getElementById("list_of_users");
                             list_of_users.innerHTML = obj.data;
                             break;
-
+                        
                         case "preview_messages":
+                            // show past conversations
                             let preview_messages1 = document.getElementById("preview_messages");
-                            preview_messages1.innerHTML = obj.data;
+                            if (obj.data) {
+                                preview_messages1.innerHTML = obj.data;
+                            } else {
+                                preview_messages1.innerHTML = 'empty';
+                            }
                             break;
                         
                         case "edit_user_profile":
@@ -54,20 +59,32 @@ function get_data(find_object, type) {
                         //     break;
                         
                         case "friend_info":
-                            let preview_messages = document.getElementById("preview_messages");
-                            preview_messages.innerHTML = obj.info;
-                
+                            
+                            
+
+                            let user_box = document.getElementById("user_box");
+                            user_box.innerHTML = obj.info;
+                            
+                            // update, modify, show all the messages
                             let msg_holder = document.getElementById("msg_holder");
                             msg_holder.innerHTML = obj.messages;
+                            
+                            // scroll to the lastest messages
+                            msg_holder.scrollTo(0, msg_holder.scrollHeight);
 
-
-                        case "send_message":
-                            let msg_holder1 = document.getElementById("msg_holder");
-                            msg_holder1.innerHTML = obj.messages;
-                            msg_holder1.scrollTo(0, msg_holder1.scrollHeight);
+                            // text bar will allways focus so can spam
                             const text_message = document.getElementById("text_message");
                             text_message.focus();
+
+                            // check if it is new message and play a sound
+                            if (typeof obj.new_message != 'undefined') {
+                                if (obj.new_message) {
+                                    sent_audio.play();
+                                }
+                            }
+                            
                             break;
+
                     }
                 }
             } else {

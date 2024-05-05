@@ -36,7 +36,10 @@
                             
                         </div>
                         <div class="user_action_icons tooltip">
-                            <i class="fa fa-folder-open-o" aria-hidden="true"></i><span>File</span>
+                            <!-- <i class="fa fa-folder-open-o" aria-hidden="true"></i><span>File</span> -->
+                            <?php if (isset($_GET['id']) && $_GET['id'] != ""):?>
+                            <div onclick="delete_conversation(event)"><p style="color: red;">Xóa cuộc trò chuyện</p></div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="msg_holder" id="msg_holder" style="overflow-y: scroll; height: 600px;">   
@@ -56,49 +59,138 @@
     <script src="js/get_data.js"></script>
     <script src="js/dangxuat.js"></script>
     <script>
+
+        var sent_audio = new Audio("assets/soundeffect/message_sent.wav");
+
         var CURRENT_CHAT_USERID = "";
+        var SEEN = false;
         get_data({}, "user_info"); // get fire when user comes --> tp check if user logged in yet
         
+        // when user click on a friend to chat
         <?php if (isset($_GET['id']) && $_GET['id'] != ""):?>
+            // get friend id to start chat
             CURRENT_CHAT_USERID = <?php echo $_GET['id'];?>;
-            get_data({userid: CURRENT_CHAT_USERID}, "friend_info");
-        <?php else: ?>
-            get_data({}, "preview_messages");
+            // but when clicked on friend --> u see their messages
+            SEEN = true;
+            get_data({userid: CURRENT_CHAT_USERID, seen: SEEN}, "friend_info");
+            //get_data({}, "preview_messages");
         <?php endif;?>
+        get_data({}, "preview_messages");
 
         // functions for chatting
         function send_message(e) {
-            // collect data
+            
             const text_message = document.getElementById("text_message");
 
             if (!text_message.value.trim()) {
                 alert("Empty messages!");
                 return;
             }
+
+            // collect data
+            const data = {};
+            data.message = text_message.value.trim();
+            data.userid = CURRENT_CHAT_USERID;
+
             //alert(text_message.value);
-    
+            
             // send and get data
-            get_data({
-                message: text_message.value.trim(),
-                userid: CURRENT_CHAT_USERID
-            }, "send_message");
+            send_data(data, "send_message");
             
             text_message.value = '';
         }
 
         function enter_pressed(e) {
+
             if (e.keyCode == 13) {  // pressed enter key
                 send_message(e);
             }
+
+            // press any key and seen = true
+            SEEN = true;
+            get_data({userid: CURRENT_CHAT_USERID, seen: SEEN}, "friend_info");
         }
 
         setInterval(function() {
+
+            SEEN = false;  // reset the seen value
             // alert("heyy");
             if (CURRENT_CHAT_USERID) {
-                get_data({userid: CURRENT_CHAT_USERID}, "friend_info");
+                get_data({
+                    userid: CURRENT_CHAT_USERID,
+                    seen: SEEN
+                }, "friend_info");
+            
+            }
+            get_data({}, "preview_messages");
+
+            
+        }, 5000);
+
+        function delete_message(e) {
+            let answer = confirm("Bạn có chắc chắn bạn muốn xóa tin nhắn này không?");
+            if (answer) {
+                var msg_id = e.target.getAttribute("msg_id");
+                //alert(msg_id);
+
+                // collect data
+                const data = {};
+                data.message_id = msg_id;
+
+                send_data(data, "delete_message");
+                //get_data({userid: CURRENT_CHAT_USERID, seen: SEEN}, "friend_info");
+            }
+        }
+
+        function delete_conversation(e) {
+            
+            let answer = confirm("Bạn có chắc chắn bạn muốn xóa cuộc trò chuyện này không?");
+            if (answer) {
+
+                // collect data
+                const data = {};
+                data.userid = CURRENT_CHAT_USERID;
+
+                send_data(data, "delete_conversation");
+                //get_data({userid: CURRENT_CHAT_USERID, seen: SEEN}, "friend_info");
             }
             
-        }, 1000);
+        }
+
+        function send_data(data, type) {
+            let xml = new XMLHttpRequest();
+
+            xml.addEventListener("load", function() {
+                if (xml.readyState == 4 || xml.status == 200) { // everything good
+                    
+                    let message = xml.responseText;
+
+                    //alert(message);
+                    if (message == 'sent') {
+
+                        //alert(message);
+                        sent_audio.play();
+
+                    } else if (message == 'deleted') {
+
+                        alert(message);
+
+                    } else if (message == 'rip') {
+
+                        alert(message);
+
+                    }
+                    
+                }
+
+            });
+
+            // send data
+            data.type_of_data = type;
+            let data_string = JSON.stringify(data); // cannot send object so turn the obj to string
+            xml.open("POST", "backend/handle_data.php", true);
+            xml.send(data_string);
+        }
 
     </script>
 </body>
