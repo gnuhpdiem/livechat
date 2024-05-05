@@ -103,9 +103,9 @@
                     }
 
                     if ($result_find_conversation[$i]['senderID'] == $_SESSION['userID']) {  // sender is me
-                        $friend['messages'] .= right_message($result_find_conversation[$i]['id'], $result_find_conversation[$i]['message'], $result_find_conversation[$i]['created_at'], $result_find_conversation[$i]['received'], $result_find_conversation[$i]['seen']);
+                        $friend['messages'] .= right_message($result_find_conversation[$i]['id'], $result_find_conversation[$i]['message'], $result_find_conversation[$i]['files'], $result_find_conversation[$i]['created_at'], $result_find_conversation[$i]['received'], $result_find_conversation[$i]['seen']);
                     } else {
-                        $friend['messages'] .= left_message($result_find_conversation[$i]['id'], $result_find_conversation[$i]['message'], $image, $result_find_conversation[$i]['created_at']);
+                        $friend['messages'] .= left_message($result_find_conversation[$i]['id'], $result_find_conversation[$i]['message'], $result_find_conversation[$i]['files'], $image, $result_find_conversation[$i]['created_at']);
                     }
                                   
                     

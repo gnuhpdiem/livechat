@@ -31,7 +31,7 @@
                 <label for="img" id="change_img_button" style="display: inline-block; cursor: pointer; padding: 5px 10px; border: 1px solid black; border-radius: 5px;">
                     Change Image
                 </label>
-                <input type="file" name="img" id="img" style="display: none;" onchange="preview_image(event)" accept=".jpg, .jpeg, .png, .gif">
+                <input type="file" name="img" id="img" style="display: none;" onchange="preview_image(event)">
             </div>
             <div class="input_field">
                 <label for="display_name">Tên hiển thị: </label>

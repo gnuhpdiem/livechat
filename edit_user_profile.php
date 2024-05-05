@@ -28,9 +28,28 @@
 
             // xử lý hình trước
             if (dragAndDropFile == null) {
+                
                 const img = document.getElementById("img");
+                
+                var start_ext = img.files[0].name;
+                var index_start_ext = start_ext.lastIndexOf(".");
+                var ext = start_ext.substr(index_start_ext + 1, 4);
+                if (!(ext == 'jpg' || ext == 'JPG' || ext == 'png' || ext == 'PNG' || ext == 'jpeg' || ext == 'JPEG')) {
+                    alert("File không hợp lệ! Chỉ hỗ trợ '.jpg', 'png', 'jpeg'");
+                    return;
+                }
+
                 upload_profile_pic(img.files[0]);
+            
             } else {
+
+                var start_ext = dragAndDropFile.name;
+                var index_start_ext = start_ext.lastIndexOf(".");
+                var ext = start_ext.substr(index_start_ext + 1, 4);
+                if (!(ext == 'jpg' || ext == 'JPG' || ext == 'png' || ext == 'PNG' || ext == 'jpeg' || ext == 'JPEG')) {
+                    alert("File không hợp lệ! Chỉ hỗ trợ '.jpg', 'png', 'jpeg'");
+                    return;
+                }
                 upload_profile_pic(dragAndDropFile);
             }
             

@@ -7,6 +7,7 @@
     <?php include_once __DIR__ . '/styles/styles.php'; ?>
 </head>
 <body>
+    <div id="viewer" class="viewer_off" onclick="toggle_viewer(event)"></div>
     <div class="container">
         <?php
             include_once __DIR__ . '/layout/sidebar.php';
@@ -47,7 +48,7 @@
                     </div>
                     <div class="user_msg">
                         <label for="file_message"><i class="fa fa-file" aria-hidden="true"></i></label>
-                        <input type="file" name="file" id="file_message" style="display: none;">
+                        <input type="file" name="file" id="file_message" style="display: none;" onchange="send_file(this.files)">
                         <input type="text" id="text_message" onkeyup="enter_pressed(event)">
                         <input type="submit" onclick="send_message(event)">
                     </div>
@@ -155,6 +156,51 @@
                 //get_data({userid: CURRENT_CHAT_USERID, seen: SEEN}, "friend_info");
             }
             
+        }
+
+        function send_file(files) {
+
+            var start_ext = files[0].name;
+            var index_start_ext = start_ext.lastIndexOf(".");
+            var ext = start_ext.substr(index_start_ext + 1, 4);
+            if (!(ext == 'jpg' || ext == 'JPG' || ext == 'png' || ext == 'PNG' || ext == 'jpeg' || ext == 'JPEG')) {
+                alert("File không hợp lệ! Chỉ hỗ trợ '.jpg', 'png', 'jpeg'");
+                return;
+            }
+            
+            let form = new FormData();
+            let xml = new XMLHttpRequest();
+
+            xml.addEventListener("load", function() {
+                if (xml.readyState == 4 || xml.status == 200) { // everything good
+                    
+                    let message = xml.responseText;
+                    //alert(message);
+                    sent_audio.play();
+                    
+                }
+
+            });
+
+            // send data
+            form.append('data', files[0]);
+            form.append('userID', CURRENT_CHAT_USERID);
+            form.append('type_of_data', "send_file");
+            
+            xml.open("POST", "backend/uploader.php", true);
+            xml.send(form);
+        }
+
+        function toggle_viewer(e) {
+            e.target.className = "viewer_off";
+        }
+
+        function image_show(e) {
+            var image = e.target.src;
+            var viewer = document.getElementById("viewer");
+
+            viewer.innerHTML = "<img src='"+image+"' style='width: 100%; height: 100%; border-radius: 0px;'>";
+            viewer.className = 'viewer_on';
         }
 
         function send_data(data, type) {

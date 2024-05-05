@@ -1,4 +1,26 @@
 <?php
+
+    // check for unread messages
+    $msgs = array();
+    $me = $_SESSION['userID'];
+    $sql = 'SELECT * FROM messages WHERE receiverID = "'. $me .'" AND received = "0";';
+    $result = $db->selectQuery($sql, []);
+
+    if (is_array($result) && count($result) > 0) {
+        for ($i=0; $i < count($result); $i++) {
+            $senderID = $result[$i]['senderID'];
+
+            if (isset($msgs[$senderID])) {
+                $msgs[$senderID] += 1;
+            } else {
+                $msgs[$senderID] = 1;
+            }
+            
+        }
+    }
+
+    // collect messages
+
     $messages = [];
     $messages['data'] = null;
     
@@ -45,14 +67,31 @@
                     $image = 'assets/uploads/' .$user_info['img'];
                 }
 
-                $message = $name .': '. $result_find_conversation[$i]['message'];
+                $message = $name .': '. $result_find_conversation[$i]['files'];
                     
                 // we do a little comparing
                 if ($result_find_conversation[$i]['senderID'] == $_SESSION['userID']) {
-                    $message = 'Bạn: ' . $result_find_conversation[$i]['message'];
+                    $message = 'Bạn: ' . $result_find_conversation[$i]['files'];
                 }
 
-                $messages['data'] .= '<a href="chat.php?id='. $user_info['userID'] .'" id="user_contact"><img src="'. $image .'" width="50" height="50"><div><span>'. $name .'</span><p>'. $message .'</p></div></a>';
+                if ($result_find_conversation[$i]['message']) {
+                    $message = $name .': '. $result_find_conversation[$i]['message'];
+                    
+                    // we do a little comparing
+                    if ($result_find_conversation[$i]['senderID'] == $_SESSION['userID']) {
+                        $message = 'Bạn: ' . $result_find_conversation[$i]['message'];
+                    }
+                }
+
+                // unread messagees
+
+                $messages['data'] .= '<a href="chat.php?id='. $user_info['userID'] .'" id="user_contact" style="position: relative;"><img src="'. $image .'" width="50" height="50"><div><span>'. $name .'</span><p>'. $message .'</p></div>';
+
+                if (count($msgs) > 0 && isset($msgs[$user_info['userID']])) {
+                    $messages['data'] .= '<div style="width: 20px; height: 20px; border-radius: 50px; background-color: red; color: white; position: absolute; right: 0px;">'.$msgs[$user_info['userID']].'</div>';
+                }
+
+                $messages['data'] .= '</a>';
 
                 $messages['type_of_data'] = 'preview_messages';
             }

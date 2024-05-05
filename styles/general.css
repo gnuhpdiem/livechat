@@ -331,3 +331,18 @@ header {
 .user_msg {
     /* margin-top: 600px; */
 }
+
+.viewer_on {
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    
+    margin: auto;
+    z-index: 12;
+    left: 600px;
+    top: 200px;
+}
+
+.viewer_off {
+    display: none;
+}

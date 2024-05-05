@@ -46,11 +46,19 @@
         }
     }
 
-    function left_message($id, $message, $image, $date_send) {
-        return '<div id="message_left"><img src="'. $image .'"><p>' . $message . '</p><span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span><span onclick="delete_message(event)" msg_id='. $id .'>Trash</span></div>';
+    function left_message($id, $message, $file, $image, $date_send) {
+
+        $send_message = '';
+        if ($message != '') {
+            $send_message = '<p>' . $message . '</p>';
+        } else {
+            $send_message = '<img src="assets/uploads/' . $file . '" onclick="image_show(event)" style="width: 200px; height: 200px;">';
+        }
+
+        return '<div id="message_left"><img src="'. $image .'">'.$send_message.'<span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span><span onclick="delete_message(event)" msg_id='. $id .'>Trash</span></div>';
     }
 
-    function right_message($id, $message, $date_send, $received, $seen) {
+    function right_message($id, $message, $file, $date_send, $received, $seen) {
 
         $status = '';
         if ($seen) {
@@ -58,11 +66,18 @@
         } elseif ($received) {
             $status = 'received';
         }
+
+        $send_message = '';
+        if ($message != '') {
+            $send_message = '<p>' . $message . '</p>';
+        } else {
+            $send_message = '<img src="assets/uploads/' . $file . '" onclick="image_show(event)" style="width: 200px; height: 200px;">';
+        }
         
         return
         '<div id="message_right">
             <span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span>
-            <p>' . $message . '</p>
+            '.$send_message.'
             <div><span>'. $status . '</span><span onclick="delete_message(event)" msg_id='. $id .'>Trash</span></div>
         </div>';
     }

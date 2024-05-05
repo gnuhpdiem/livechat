@@ -34,11 +34,13 @@ function get_data(find_object, type) {
                         
                         case "preview_messages":
                             // show past conversations
-                            let preview_messages1 = document.getElementById("preview_messages");
-                            if (obj.data) {
-                                preview_messages1.innerHTML = obj.data;
-                            } else {
-                                preview_messages1.innerHTML = 'empty';
+                            if (document.getElementById("preview_messages")) {
+                                let preview_messages1 = document.getElementById("preview_messages");
+                                if (obj.data) {
+                                    preview_messages1.innerHTML = obj.data;
+                                } else {
+                                    preview_messages1.innerHTML = 'empty';
+                                }
                             }
                             break;
                         
@@ -79,6 +81,7 @@ function get_data(find_object, type) {
                             // check if it is new message and play a sound
                             if (typeof obj.new_message != 'undefined') {
                                 if (obj.new_message) {
+                                    
                                     sent_audio.play();
                                 }
                             }
