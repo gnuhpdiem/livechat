@@ -33,7 +33,7 @@
                 <button id="clear">Clear</button>
             </div>
             <div class="link">
-                <p>Đã có tài khoản? Hãy <a href="dangki.php">đăng nhập</a> ngay!</p>
+                <p>Đã có tài khoản? Hãy <a href="index.php">đăng nhập</a> ngay!</p>
             </div>
         </form>
     </div>

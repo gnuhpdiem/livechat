@@ -9,11 +9,11 @@
     <form id="formID" action="" method="post">
         <div class="error" id="error"></div>
         <div class="input_field">
-            <label for="currentPass">Current password: </label>
+            <label for="currentPass">Mật khẩu hiện tại: </label>
             <input type="password" name="currentPass" id="currentPass" autocomplete="off">
         </div>
         <div class="input_field">
-            <label for="newPass">New password: </label>
+            <label for="newPass">Mật khẩu mới: </label>
             <input type="password" name="newPass" id="newPass" autocomplete="off">
         </div>
         <div class="input_field">

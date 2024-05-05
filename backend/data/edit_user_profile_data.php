@@ -29,7 +29,7 @@
                     <img src="'. $image .'" width="150" height="150" id="preview_img" ondragenter="handle_drag_and_drop(event)" ondragleave="handle_drag_and_drop(event)" ondragover="handle_drag_and_drop(event)" ondrop="handle_drag_and_drop(event)">
                 </div>
                 <label for="img" id="change_img_button" style="display: inline-block; cursor: pointer; padding: 5px 10px; border: 1px solid black; border-radius: 5px;">
-                    Change Image
+                    Đổi hình ảnh
                 </label>
                 <input type="file" name="img" id="img" style="display: none;" onchange="preview_image(event)">
             </div>

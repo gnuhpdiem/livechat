@@ -55,10 +55,6 @@ function get_data(find_object, type) {
                             user_content.innerHTML = obj.data;
                             break;
                         
-                        // case "contacts_chat":
-                        //     let chat_preview_messages = document.getElementById("preview_messages");
-                        //     chat_preview_messages.innerHTML = obj.data;
-                        //     break;
                         
                         case "friend_info":
                             
