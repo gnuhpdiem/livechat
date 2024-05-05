@@ -85,7 +85,7 @@
 
                 // unread messagees
 
-                $messages['data'] .= '<a href="chat.php?id='. $user_info['userID'] .'" id="user_contact" style="position: relative;"><img src="'. $image .'" width="50" height="50"><div><span>'. $name .'</span><p>'. $message .'</p></div>';
+                $messages['data'] .= '<a href="chat.php?id='. $user_info['userID'] .'" id="user_contact" class="user_contact" style="position: relative; overflow: hidden;"><div style="display: flex; align-item: center;"><img src="'. $image .'" width="50" height="50"><div class="details"><span>'. $name .'</span><p>'. $message .'</p></div></div>';
 
                 if (count($msgs) > 0 && isset($msgs[$user_info['userID']])) {
                     $messages['data'] .= '<div style="width: 20px; height: 20px; border-radius: 50px; background-color: red; color: white; position: absolute; right: 0px;">'.$msgs[$user_info['userID']].'</div>';

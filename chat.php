@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat!</title>
     <?php include_once __DIR__ . '/styles/styles.php'; ?>
+    <link rel="stylesheet" type="text/css" href="/livechat/styles/general.css">
 </head>
 <body>
     <div id="viewer" class="viewer_off" onclick="toggle_viewer(event)"></div>
@@ -21,12 +22,7 @@
             <div>
                 <section class="users">
                     <h1>Đoạn chat</h1>
-                    <div class="header">
-                        <div class="input-box">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                            <input type="text" placeholder="Tìm kiếm tin nhắn...">
-                        </div>
-                    </div>
+                    
                     <div class="preview_messages" id="preview_messages" style="display: block;">
                         
                     </div>
@@ -43,14 +39,14 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="msg_holder" id="msg_holder" style="overflow-y: scroll; height: 600px;">   
+                    <div class="msg_holder" id="msg_holder" style="overflow-y: scroll; height: 540px;">   
                         
                     </div>
-                    <div class="user_msg">
-                        <label for="file_message"><i class="fa fa-file" aria-hidden="true"></i></label>
+                    <div class="user_msg" style="display: flex; padding: 18px 30px; justify-content:space-between; gap: 10px;">
+                        <label for="file_message"><i class="fa fa-file" aria-hidden="true" style="font-size: 40px; cursor: pointer;"></i></label>
                         <input type="file" name="file" id="file_message" style="display: none;" onchange="send_file(this.files)">
-                        <input type="text" id="text_message" onkeyup="enter_pressed(event)">
-                        <input type="submit" onclick="send_message(event)">
+                        <input type="text" id="text_message" onkeyup="enter_pressed(event)" style="height: 45px; flex: 1; font-size: 19px;border: 1px solid #ccc; padding: 0 13px; border-radius: 5px; outline: none;">
+                        <input type="submit" onclick="send_message(event)" style="width: 55px; border: none; outline: none; background-color: #6683FE; color: #fff; cursor: pointer; font-size: 19px;">
                     </div>
                 </section>
             </div>

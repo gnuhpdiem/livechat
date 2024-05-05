@@ -1,2 +1,1 @@
 <link href="/livechat/assets/vendors/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/livechat/styles/general.css">

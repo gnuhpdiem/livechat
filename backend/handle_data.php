@@ -76,9 +76,9 @@
         
         return
         '<div id="message_right">
-            <span>'. date("d/m/Y H:i", strtotime($date_send)) .'</span>
+        <div><span style="border: 1px solid red;">'. date("H:i", strtotime($date_send)) .'</span><span onclick="delete_message(event)" msg_id='. $id .'>Trash</span><span style="border: 1px solid green;">'. $status . '</span></div>
             '.$send_message.'
-            <div><span>'. $status . '</span><span onclick="delete_message(event)" msg_id='. $id .'>Trash</span></div>
+    
         </div>';
     }
 

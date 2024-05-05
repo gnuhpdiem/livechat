@@ -2,7 +2,7 @@
     <div class="quicklinks">
         <ul>
             <a href="chat.php"><li class="tooltip"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Chat</span></li></a>
-            <a href="contacts.php"><li class="tooltip"><i class="fa fa-address-book-o" aria-hidden="true"><span>Contacts</span></i></li></a>
+            <a href="contacts.php"><li class="tooltip"><i class="fa fa-address-book-o" aria-hidden="true"></i><span>Contacts</span></li></a>
         </ul>
     </div>
     <div class="settings_section">

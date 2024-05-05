@@ -3,32 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
+    <title>Đăng kí</title>
     <link rel="stylesheet" href="styles/dangki_dangnhap.css">
+    <?php include_once __DIR__ . '/styles/styles.php'; ?>
 </head>
 <body>
     <div class="container">
 
         <form id="formID" action="" method="post">
+            <h1>Đăng kí</h1>
             <div class="error" id="error"></div>
             <div class="input_field">
-                <label for="username">Email: </label>
-                <input type="email" name="email" id="email" autocomplete="off">
+                
+                <input type="email" name="email" id="email" autocomplete="off" placeholder="Email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
             </div>
             <div class="input_field">
-                <label for="username">Tên tài khoản: </label>
-                <input type="text" name="username" id="username" autocomplete="off">
+                
+                <input type="text" name="username" id="username" autocomplete="off" placeholder="Tên tài khoản">
+                <i class="fa fa-user" aria-hidden="true"></i>
             </div>
             <div class="input_field">
-                <label for="password">Mật khẩu: </label>
-                <input type="password" name="password" id="password" autocomplete="off">
+                
+                <input type="password" name="password" id="password" autocomplete="off" placeholder="Mật khẩu">
+                <i class="fa fa-lock" aria-hidden="true"></i>
             </div>
-            <div class="input_field">
-                <input type="submit" name="submitBtn" id="submitBtn" value="Đăng kí">
+            <div class="buttons">
+                <input type="submit" name="submitBtn" id="submitBtn" value="Đăng nhập">
                 <button id="clear">Clear</button>
             </div>
+            <div class="link">
+                <p>Đã có tài khoản? Hãy <a href="dangki.php">đăng nhập</a> ngay!</p>
+            </div>
         </form>
-        <p>Đã có tài khoản? Hãy <a href="index.php">đăng nhập</a> ngay!</p>
     </div>
 
     <script>

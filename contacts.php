@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contacts</title>
     <?php include_once __DIR__ . '/styles/styles.php'; ?>
+    <link rel="stylesheet" type="text/css" href="/livechat/styles/general.css">
 </head>
 <body>
     <div class="container">
